@@ -1,0 +1,20 @@
+{
+  "name": "proximal",
+  "version": "0.0.1",
+  "author": "Gavin Lloyd <gavinhungry@gmail.com>",
+  "description": "Minimal JSON RPC over HTTP with Proxy/Promise interface",
+  "license": "MIT",
+
+  "keywords": [
+    "rpc",
+    "proxy"
+  ],
+
+  "homepage": "https://github.com/gavinhungry/proximal",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gavinhungry/proximal.git"
+  },
+
+  "main": "proximal-server.js"
+}
