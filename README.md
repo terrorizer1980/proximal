@@ -55,6 +55,11 @@ Usage
   foo.doesNotExist('arg1').then(null, err => {
     // Error: method not found
   });
+
+  let doesNotExist = rpc.getModule('doesNotExist');
+  doesNotExist.doSomething().then(null, err => {
+    // Error: module not found
+  });
 ```
 
 License
