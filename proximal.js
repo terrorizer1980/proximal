@@ -80,6 +80,10 @@
     class ImplError extends Error {};
 
     let Server = function ProximalServer(opts = {}) {
+      if (!opts.modules || !Object.keys(opts.modules).length) {
+        throw new Error('modules are required');
+      }
+
       this.modules = opts.modules;
     };
 
