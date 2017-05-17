@@ -1,6 +1,6 @@
 proximal
 ========
-Minimal JSON RPC over HTTP with Proxy/Promise interface.
+(work in progress) Minimal JSON RPC over HTTP with Proxy/Promise interface.
 
 Usage
 -----
