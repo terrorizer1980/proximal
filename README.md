@@ -1,15 +1,20 @@
 proximal
 ========
-(work in progress) Minimal JSON RPC over HTTP with Proxy/Promise interface.
+Minimal JSON RPC over HTTP with Proxy/Promise interface.
+
+Installation
+------------
+
+    $ npm install proximal
 
 Usage
 -----
 
 ### Server
 ```javascript
-  let Proximal = require('./proximal-server');
+  const proximal = require('proximal');
 
-  let proximal = new Proximal({
+  let rpc = new proximal.Server({
     modules: {
       foo: require('./foo'),
       bar: require('./bar')
@@ -20,33 +25,33 @@ Usage
 
 #### Express
 ```javascript
-  let express = require('express');
+  const express = require('express');
   let app = express();
 
-  api.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'localhost');
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     next();
   });
 
   // body-parser is optional
-  api.post('/rpc', proximal.middleware());
-  api.listen(8888);
+  app.post('/rpc', rpc.middleware());
+  app.listen(8888);
 ```
 
 ### Client
 ```javascript
-  let proximal = new Proximal({
-    url: 'http://localhost:8888/rpc'
+  let rpc = new proximal.Client({
+    url: 'http://example.tld:8888/rpc'
   });
 
-  let foo = proximal.getModule('foo');
+  let foo = rpc.getModule('foo');
 
   foo.doSomething('arg1', 'arg2').then(result => {
     // your result from remote `foo.doSomething` method here
   });
-  
+
   foo.doesNotExist('arg1').then(null, err => {
     // Error: method not found
   });
