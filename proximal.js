@@ -56,7 +56,11 @@
                     return xhr.onerror(e);
                   }
 
-                  res(JSON.parse(xhr.responseText));
+                  try {
+                    res(JSON.parse(xhr.responseText));
+                  } catch(err) {
+                    res(null);
+                  }
                 };
 
                 xhr.send(JSON.stringify({ moduleName, methodName, args }));
