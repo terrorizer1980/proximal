@@ -150,7 +150,9 @@
       },
 
       /**
+       * Middleware function for handing calls
        *
+       * @return {Function}
        */
       middleware: function() {
         return (req, res) => {
