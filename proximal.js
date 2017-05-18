@@ -17,6 +17,7 @@
    *
    * @param {Object} opts
    * @param {String} opts.url - URL of remote endpoint
+   * @param {Function} [opts.xhr] - alternate XMLHttpRequest constructor
    */
   let Client = (() => {
     let Client = function ProximalClient(opts = {}) {
@@ -24,6 +25,7 @@
         throw new Error('url is required');
       }
 
+      this.XHR = opts.xhr || XMLHttpRequest;
       this.url = opts.url;
     };
 
@@ -46,7 +48,7 @@
           get: (obj, methodName) => {
             return (...args) => {
               return new Promise((res, rej) => {
-                let xhr = new XMLHttpRequest();
+                let xhr = new this.XHR();
                 xhr.open('POST', this.url);
                 xhr.setRequestHeader('Content-Type', 'application/json');
 
