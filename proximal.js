@@ -83,7 +83,7 @@
    * @param {Object} opts.modules - map of modules to be included
    */
   let Server = (() => {
-    class ImplError extends Error {};
+    class ImplError extends Error {}
 
     let Server = function ProximalServer(opts = {}) {
       if (!opts.modules || !Object.keys(opts.modules).length) {
