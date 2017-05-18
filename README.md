@@ -16,26 +16,17 @@ const proximal = require('proximal');
 
 let rpc = new proximal.Server({
   modules: {
-    foo: require('./foo'),
-    bar: require('./bar')
+    foo: require('foo'),
+    bar: require('bar')
   }
 });
-
 ```
 
-#### Express
+#### Middleware
 ```javascript
 const express = require('express');
 let app = express();
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  next();
-});
-
-// body-parser is optional
 app.post('/rpc', rpc.middleware());
 app.listen(8888);
 ```
@@ -62,10 +53,10 @@ doesNotExist.doSomething().then(null, err => {
 });
 ```
 
-#### Alternate XMLHttpRequest
+#### Node.js
 The client object is designed for use in the browser. However, pass an optional
-`XMLHttpRequest` constructor to the `proximal.Client` constructor to use the
-client in a Node environment:
+`XMLHttpRequest` constructor to the `proximal.Client` constructor to use it in
+a Node.js environment:
 
 ```javascript
 let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
